@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Text, Image, TouchableOpacity } from './styles';
+
 import colors from '../../colors';
 import wateringImage from '../../assets/watering.png';
 
