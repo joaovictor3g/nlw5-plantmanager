@@ -9,7 +9,7 @@ interface TextProps {
 };
 
 export const Container = styled.SafeAreaView<any>`
-    padding-top: ${Platform.OS==='android' && `${40}px`};
+    padding-top: ${Platform.OS==='android' ? `${40}px` : 0};
     flex: 1;
     align-items: center;
     justify-content: space-between;
@@ -27,7 +27,6 @@ export const Text = styled.Text<any>`
 `;
 
 export const Image = styled.Image`
-
 `;
 
 export const TouchableOpacity = styled.TouchableOpacity<any>`

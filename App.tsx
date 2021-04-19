@@ -1,4 +1,4 @@
-import React, { useDebugValue, useState } from 'react';
+import React from 'react';
 import { Routes } from './src/routes';
 import { ThemeProvider } from 'styled-components';
 import { useColorScheme } from 'react-native';
