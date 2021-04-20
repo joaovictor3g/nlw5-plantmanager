@@ -1,4 +1,4 @@
-import { Dimensions, Platform } from 'react-native';
+import { Dimensions, Platform, TouchableOpacityProps } from 'react-native';
 import styled from 'styled-components/native';
 
 

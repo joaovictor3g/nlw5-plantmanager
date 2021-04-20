@@ -1,13 +1,18 @@
 import React from 'react';
 import { Container, Text, Image, TouchableOpacity, Wrapper } from './styles';
-
 import colors from '../../colors';
 import wateringImage from '../../assets/watering.png';
-
+import { useNavigation } from '@react-navigation/native';
 import { Entypo } from '@expo/vector-icons';
 import fonts from '../../styles/fonts';
 
 export function Welcome() {
+    const { navigate } = useNavigation();
+
+    function handleNavigateToUserIdentification() {
+        navigate('/user-identification');
+    }
+    
     return (
         <Container>
             <Wrapper>
@@ -38,7 +43,7 @@ export function Welcome() {
                     sempre que precisar.
                 </Text>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handleNavigateToUserIdentification}>
                     <Entypo 
                         name="chevron-thin-right" 
                         size={24}
