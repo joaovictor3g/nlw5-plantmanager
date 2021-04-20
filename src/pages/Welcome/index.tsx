@@ -10,7 +10,7 @@ export function Welcome() {
             <Text
                 fontSize={32}
                 fontWeight="bold"
-                color={colors.heading}
+                
             >
                 Gerencie {'\n'}
                 suas plantas {'\n'}
@@ -21,9 +21,8 @@ export function Welcome() {
 
             <Text
                 fontWeight="normal"
-                color={"#000"}
                 fontSize={18}
-                color={colors.heading}
+                
             >
                 Não esqueça mais de regar suas plantas. 
                 Nós cuidamos de lembrar você

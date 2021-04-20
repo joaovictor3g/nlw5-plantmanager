@@ -20,7 +20,7 @@ export const Text = styled.Text<any>`
     font-size: ${props => props.fontSize ? `${props.fontSize}px` : `${16}px`};
     font-weight: ${props => props.fontWeight};
     text-align: center;
-    color: ${props => props.theme.colors.heading};
+    color: ${props => props.color ? props.color: props.theme.colors.heading};
     padding-left: 20px;
     padding-right: 20px;
 
