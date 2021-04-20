@@ -8,7 +8,8 @@
 </div>
 
 ## 💻 Project
-    This project has intuit of keep your plants safe. Giving informations, like: water, description, images. 🌱
+
+This project has intuit of keep your plants safe. Giving informations, like: water, description, images. 🌱
 
 ## Screens
 If your device lets you toggle the theme, this application adapt itself to it, otherwise, the default theme is dark. :D
