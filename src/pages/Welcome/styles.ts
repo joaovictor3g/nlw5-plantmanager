@@ -1,6 +1,6 @@
-import { Platform } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 import styled from 'styled-components/native';
-import colors from '../../colors';
+
 
 interface TextProps {
     fontSize?: number;
@@ -9,16 +9,23 @@ interface TextProps {
 };
 
 export const Container = styled.SafeAreaView<any>`
-    padding-top: ${Platform.OS==='android' ? `${40}px` : 0};
     flex: 1;
+    background: ${props => props.theme.colors.background};
+`;
+
+export const Wrapper = styled.View<any>`
+    flex: 1;
+    padding-top: ${Platform.OS==='android' ? `${40}px` : 0};
     align-items: center;
     justify-content: space-between;
-    background: ${props => props.theme.colors.background};
+    padding-left: 20px;
+    padding-right: 20px;
 `;
 
 export const Text = styled.Text<any>`
     font-size: ${props => props.fontSize ? `${props.fontSize}px` : `${16}px`};
     font-weight: ${props => props.fontWeight};
+    font-family:  ${props => props.fontFamily  || 'sans-serif'};
     text-align: center;
     color: ${props => props.color ? props.color: props.theme.colors.heading};
     padding-left: 20px;
@@ -27,6 +34,7 @@ export const Text = styled.Text<any>`
 `;
 
 export const Image = styled.Image`
+    height: ${Dimensions.get('window').width * 0.7}px;
 `;
 
 export const TouchableOpacity = styled.TouchableOpacity<any>`
