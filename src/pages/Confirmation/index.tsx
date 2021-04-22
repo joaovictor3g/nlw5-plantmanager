@@ -3,13 +3,33 @@ import { Container, Content, Image, Text, Title } from './styles';
 
 import emojiImg from '../../assets/Emoji.png';
 import { Button } from '../../components/Button';
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation, useRoute } from '@react-navigation/core';
+
+interface Params {
+    title: string;
+    subTitle: string;
+    buttonTitle: string;
+    nextScreen: string;
+};
+
+const emojis = {
+    hug: '',
+    smile: ''
+}
 
 export function Confirmation() {
     const { navigate } = useNavigation();
+    const routes = useRoute();
+    
+    const {
+        title,
+        buttonTitle,
+        nextScreen,
+        subTitle
+    } = routes.params as Params;
 
     function handleNavigateToPlantSelect() {
-        navigate('/plant-select');    
+        navigate(nextScreen);    
     }
     
     return (
@@ -17,15 +37,14 @@ export function Confirmation() {
             <Content>
                 <Image source={emojiImg}/>
 
-                <Title>Prontinho</Title>
+                <Title>{title}</Title>
                 <Text>
-                    Agora vamos cuidar das suas
-                    plantinhas com muito cuidado.
+                    {subTitle}
                 </Text>
 
                 <Button
                     onPress={handleNavigateToPlantSelect} 
-                    text="Começar"
+                    text={buttonTitle}
                 />
             </Content>
         </Container>

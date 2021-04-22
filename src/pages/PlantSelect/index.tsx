@@ -6,23 +6,12 @@ import { ActivityIndicator, FlatList } from 'react-native';
 import { Container, Title, SubTitle, Wrapper, FlatListWrapper, PlantsFlatListWrapper } from './styles';
 import { PlantCardPrimary } from '../../components/PlantCardPrimary';
 import { Loading } from '../../components/Loading';
+import { useNavigation } from '@react-navigation/core';
+import { PlantProps } from '../../libs/storage';
 
 interface EnvironmentProps {
     key: string;
     title: string;
-}
-
-interface PlantProps {
-    id: string;
-    name: string;
-    about: string;
-    water_tips: string;
-    photo: string;
-    environments: string[];
-    frequency: {
-        times: number;
-        repeat_every: string;
-    }
 }
 
 export function PlantSelect() {
@@ -77,7 +66,7 @@ export function PlantSelect() {
                 _sort: 'name',
                 _order: 'asc',
                 _page: page,
-                _limit: 5
+                _limit: 8
             }
         });
 
@@ -106,6 +95,12 @@ export function PlantSelect() {
 
         setFilteredPlants(filtered);
     }
+
+    const { navigate } = useNavigation();
+    function handlePlantSelect(plant: PlantProps) {
+        navigate("/plant-save", { plant });
+    }   
+
     if(isLoading) 
         return <Loading />
 
@@ -134,7 +129,7 @@ export function PlantSelect() {
                                 onPress={() => handlePressEnvironmentButton(item.key)}
                             />
                         )}
-                        keyExtractor={item => item.key}
+                        keyExtractor={item => String(item.key)}
                     />
                 </FlatListWrapper>
 
@@ -144,9 +139,10 @@ export function PlantSelect() {
                         renderItem={({ item }) => (
                             <PlantCardPrimary 
                                 data={item}
+                                onPress={() => handlePlantSelect(item)}
                             />
                         )}
-                        keyExtractor={item => item.id}
+                        keyExtractor={item => String(item.id)}
                         numColumns={2}
                         showsVerticalScrollIndicator={false}
                         onEndReachedThreshold={0.1}

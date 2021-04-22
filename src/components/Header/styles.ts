@@ -7,7 +7,7 @@ export const Container = styled.View`
     justify-content: space-between;
     align-items: center;
     padding-top: 20px;
-
+    margin-top: 20px;
  
 `;
 
@@ -24,7 +24,7 @@ export const ImageProfile = styled.Image`
     width: 56px;
     height: 56px;
 
-    border-radius: 28px;
+    border-radius: 100px;
 
 `;
 

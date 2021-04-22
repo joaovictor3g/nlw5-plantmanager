@@ -3,9 +3,9 @@ import { Container, Content, Form, Text, Image, Input, KeyBoardAvoidingView, UpV
 
 import emojiImg from '../../assets/Emoji.png';
 import { Button } from '../../components/Button';
-import { Keyboard, Platform, TouchableWithoutFeedback } from 'react-native';
+import { Keyboard, Platform, TouchableWithoutFeedback, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function UserIdentification() {
     const [isFocused, setIsFocused] = useState(false);
@@ -27,8 +27,22 @@ export function UserIdentification() {
 
     const { navigate } = useNavigation();
 
-    function handleNavigateToConfirmation() {
-        navigate('/user-confirmation');
+    async function handleNavigateToConfirmation() {
+        if(!name) 
+            return Alert.alert('Me diz como chamar você 😉')
+        
+        try {
+            await AsyncStorage.setItem('@plantmanager:user', name);
+            navigate('/user-confirmation', {
+                title: 'Prontinho',
+                subTitle: 'Agora vamos começar a cuidar das suas plantinhas',
+                buttonTitle: 'Começar',
+                nextScreen: '/plant-select'
+            });
+        
+        } catch {
+            Alert.alert('Não foi possível salvar o nome de usuário')
+        }
     }
 
     return (
