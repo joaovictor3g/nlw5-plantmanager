@@ -11,6 +11,7 @@ export default {
         shape: '#F0F0F0',
         blue: '#EBF6FF',
 
-        white: '#FFF'
+        white: '#FFF',
+        textButton: '#52665A'
     }
 }

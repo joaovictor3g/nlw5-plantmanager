@@ -3,13 +3,15 @@ export default {
 
     colors: {
         heading: '#FFF',
-        primary_green: '#32B768',
+        primary_green: '#DAF2E4',
         green: '#2B7A4B',
         body: '#AAB2AD',
 
         background: '#000',
-        shape: '#000',
+        shape: '#F0F0F0',
         blue: '#3D7199',
-        white: '#FFF'
+        white: '#FFF',
+
+        textButton: '#52665A'
     }
 }

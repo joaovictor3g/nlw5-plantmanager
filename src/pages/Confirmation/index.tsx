@@ -3,8 +3,15 @@ import { Container, Content, Image, Text, Title } from './styles';
 
 import emojiImg from '../../assets/Emoji.png';
 import { Button } from '../../components/Button';
+import { useNavigation } from '@react-navigation/core';
 
 export function Confirmation() {
+    const { navigate } = useNavigation();
+
+    function handleNavigateToPlantSelect() {
+        navigate('/plant-select');    
+    }
+    
     return (
         <Container>
             <Content>
@@ -16,7 +23,10 @@ export function Confirmation() {
                     plantinhas com muito cuidado.
                 </Text>
 
-                <Button text="Começar"/>
+                <Button
+                    onPress={handleNavigateToPlantSelect} 
+                    text="Começar"
+                />
             </Content>
         </Container>
     );
