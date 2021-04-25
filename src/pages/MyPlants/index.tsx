@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Header } from '../../components/Header';
 import { Container, SpotLight, Image, SpotlightText, PlantTitle, Plants, Wrapper, NormalText } from './styles';
-
+import * as Notifications from 'expo-notifications';
 import waterDrop from '../../assets/waterdrop.png';
 import { loadPlants, PlantProps, StoragePlantProps } from '../../libs/storage';
 import { formatDistance } from 'date-fns';
@@ -29,8 +29,11 @@ export function MyPlants() {
             const data = await AsyncStorage.getItem('@plantmanager:plants');
             if(data) {
                 const plants = JSON.parse(data) as StoragePlantProps;
-
+                
+                await Notifications.cancelScheduledNotificationAsync(plants[plant.id].notificationId);
+              
                 delete plants[plant.id];
+            
             }
 
             await AsyncStorage.setItem(

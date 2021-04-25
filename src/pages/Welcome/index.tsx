@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Text, Image, TouchableOpacity, Wrapper } from './styles';
 import colors from '../../colors';
 import wateringImage from '../../assets/watering.png';
 import { useNavigation } from '@react-navigation/native';
 import { Entypo } from '@expo/vector-icons';
 import fonts from '../../styles/fonts';
+import { requestNotificationsAsync } from '../../libs/storage';
 
 export function Welcome() {
     const { navigate } = useNavigation();
-
+    
     function handleNavigateToUserIdentification() {
         navigate('/user-identification');
     }
