@@ -14,7 +14,7 @@ export const Container = styled.View<any>`
 export const Wrapper = styled.View`
     flex: 1;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 20px;
 `;
 
 export const SpotLight = styled.View<any>`
@@ -54,3 +54,10 @@ export const PlantTitle = styled.Text<any>`
     font-family: ${fonts.heading};
     color: ${props => props.theme.colors.heading};
 `;
+
+
+export const NormalText = styled.Text<any>`
+    font-size: 24px;
+    color: ${props => props.theme.colors.textButton};
+    font-family: ${fonts.text};
+`;  

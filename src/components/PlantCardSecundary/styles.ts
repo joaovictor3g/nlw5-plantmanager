@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import fonts from '../../styles/fonts';
 
-export const Button = styled.TouchableOpacity<any>`
+export const Button = styled.Pressable<any>`
     background: ${props => props.theme.colors.shape};
     border-radius: 20px;
     align-items: center;

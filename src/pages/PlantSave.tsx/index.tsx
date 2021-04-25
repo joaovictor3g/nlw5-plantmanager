@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, Platform, useColorScheme } from 'react-native';
-import { AboutPlant, AlertLabel, Container, Controller, TipImage, PlantInfo, PlantName, TipContainer, TipText, ChangeDateButton, ChangeDateText} from './styles';
+import { Scroll, AboutPlant, AlertLabel, Container, Controller, TipImage, PlantInfo, PlantName, TipContainer, TipText, ChangeDateButton, ChangeDateText} from './styles';
 import { SvgFromUri } from 'react-native-svg';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import wateringDrop from '../../assets/waterdrop.png';
@@ -8,7 +8,7 @@ import { Button } from '../../components/Button';
 import { useNavigation, useRoute } from '@react-navigation/core';
 import { isBefore } from 'date-fns';
 import format from 'date-fns/format';
-import { loadPlants, PlantProps, savePlant } from '../../libs/storage';
+import { PlantProps, savePlant } from '../../libs/storage';
 
 
 interface Params {
@@ -42,6 +42,7 @@ export function PlantSave() {
     }
 
     async function handleSave() {
+        // console.log(selectDateTime);
         try {
             await savePlant({
                 ...plant,
@@ -53,7 +54,9 @@ export function PlantSave() {
                 subTitle: 'Fique tranquilo que sempre vamos lembrar você da sua plantinha',
                 buttonTitle: 'Muito obrigado :D',
                 nextScreen: '/my-plants'
-            })
+            });
+
+            // Alert.alert(`Planta ${plant.name} salva`)
 
         } catch {
             Alert.alert('Não foi possível salvar')
@@ -61,63 +64,71 @@ export function PlantSave() {
     }
 
     return (    
-        <Container>
-            <PlantInfo>
-                {/* <SvgFromUri 
-                    uri={plant.photo}
-                    height={150}
-                    width={150}
-                /> */}
+        <Scroll
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ 
+                flex: 1,
+                justifyContent: 'space-between'
+             }}
+        >
+            <Container>
+                <PlantInfo>
+                    {/* <SvgFromUri 
+                        uri={plant.photo}
+                        height={150}
+                        width={150}
+                    /> */}
 
-                <PlantName>{plant.name}</PlantName>
+                    <PlantName>{plant.name}</PlantName>
 
-                <AboutPlant>
-                    {plant.about}
-                </AboutPlant>
-            </PlantInfo>
+                    <AboutPlant>
+                        {plant.about}
+                    </AboutPlant>
+                </PlantInfo>
 
-            <Controller>
-                <TipContainer>
-                    <TipImage 
-                        source={wateringDrop}
-                    />
-                   
-                    <TipText>
-                        {plant.water_tips}
-                    </TipText>
-            
-                </TipContainer>
+                <Controller>
+                    <TipContainer>
+                        <TipImage 
+                            source={wateringDrop}
+                        />
+                    
+                        <TipText>
+                            {plant.water_tips}
+                        </TipText>
                 
-                <AlertLabel>
-                    Escolha o melhor horário para ser lembrado
-                </AlertLabel>
+                    </TipContainer>
+                    
+                    <AlertLabel>
+                        Escolha o melhor horário para ser lembrado
+                    </AlertLabel>
 
-               { showDatePicker && 
-                    <DateTimePicker 
-                        value={selectDateTime}
-                        mode="time"
-                        display="spinner"
-                        onChange={handleChangeTime}
-                        style={{ zIndex: 5 }}
-                        textColor={deviceTheme==='dark' ? '#fff' : '#000'}
+                { showDatePicker && 
+                        <DateTimePicker 
+                            value={selectDateTime}
+                            mode="time"
+                            display="spinner"
+                            onChange={handleChangeTime}
+                            style={{ zIndex: 5 }}
+                            textColor={deviceTheme==='dark' ? '#fff' : '#000'}
+                        />
+                    }
+                    
+                    { Platform.OS==='android' && (
+                        <ChangeDateButton 
+                            onPress={handleOpenDateTimePickerForAndroid}
+                        >
+                            <ChangeDateText>
+                                Mudar {format(selectDateTime, 'HH:mm')}
+                            </ChangeDateText>
+                        </ChangeDateButton>
+                    ) }
+
+                    <Button 
+                        text="Cadastrar planta"
+                        onPress={handleSave}    
                     />
-                }
-                
-                { Platform.OS==='android' && (
-                    <ChangeDateButton 
-                        onPress={handleOpenDateTimePickerForAndroid}
-                    >
-                        <ChangeDateText>
-                            Mudar {format(selectDateTime, 'HH:mm')}
-                        </ChangeDateText>
-                    </ChangeDateButton>
-                ) }
-
-                <Button 
-                    text="Cadastrar planta"
-                    onPress={handleSave}    
-                />
-            </Controller>
-        </Container>
+                </Controller>
+            </Container>
+        </Scroll>
     )
 }

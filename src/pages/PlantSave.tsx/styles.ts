@@ -1,10 +1,24 @@
 import styled from 'styled-components/native';
+import { ScrollViewProps } from 'react-native';
 import fonts from '../../styles/fonts';
+
+interface ScrollProps extends ScrollViewProps {
+    theme: {
+        colors: {
+            background: string;
+        }
+    }
+}
+
+export const Scroll = styled.ScrollView<ScrollProps>`
+    flex: 1;
+    background: ${props => props.theme.colors.background};
+`;
 
 export const Container = styled.View<any>`
     flex: 1;
     justify-content: space-between;
-    background: ${props => props.theme.colors.background}
+    background: ${props => props.theme.colors.background};
 `;
 
 export const PlantInfo = styled.View<any>`
